@@ -29,6 +29,12 @@ export class AdminService {
     );
   }
 
+  getAllAds() {
+    return this.http.get<any[]>(`${this.api}/Administrator/all-ads`, {
+      headers: this.getAuthHeaders(),
+    });
+  }
+
   getPendingAds() {
     return this.http.get<any[]>(`${this.api}/Administrator/pending-ads`, {
       headers: this.getAuthHeaders(),
