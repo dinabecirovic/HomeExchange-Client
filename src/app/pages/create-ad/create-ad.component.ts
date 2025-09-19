@@ -61,7 +61,7 @@ export class CreateAdComponent {
     this.adService.create(payload as any).subscribe({
       next: () => {
         this.loading = false;
-        alert('Advertisement created — waiting admin approval.');
+        alert('Oglas je kreiran - čekajte odobrenje admina.');
         this.router.navigate(['/ads']);
       },
       error: (e) => {
