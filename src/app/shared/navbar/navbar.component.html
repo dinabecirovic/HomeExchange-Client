@@ -1,0 +1,30 @@
+<nav class="navbar">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">HomeExchange</a>
+    <div class="navbar-links">
+      <ul class="nav-left">
+        <li><a routerLink="/ads"></a></li>
+        <li *ngIf="isHomeOwner"><a routerLink="create-ad">Kreiraj oglas</a></li>
+        <li *ngIf="isAdmin"><a routerLink="/pending-ads">Oglasi</a></li>
+        <li *ngIf="isAdmin"><a routerLink="/pending-users">Korisnici</a></li>
+      </ul>
+
+      <ul class="nav-right">
+        <li *ngIf="!logged">
+          <a routerLink="/login">Prijavi se</a>
+        </li>
+        <li *ngIf="!logged">
+          <a routerLink="/register">Registruj se</a>
+        </li>
+        <li class="dropdown" *ngIf="logged">
+          <a class="dropdown-toggle" href="#" id="userMenu" role="button">
+            {{ user?.firstName }}
+          </a>
+          <ul class="dropdown-menu">
+            <li><a (click)="logout()">Odjavi se</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

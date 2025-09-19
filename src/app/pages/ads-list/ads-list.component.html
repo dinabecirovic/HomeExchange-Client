@@ -1,0 +1,38 @@
+<div class="ads-container">
+  <div class="search-card">
+    <h5>Search</h5>
+    <form (ngSubmit)="search()" [formGroup]="form" class="search-form">
+      <div>
+        <input formControlName="city" placeholder="City" />
+      </div>
+      <div>
+        <input formControlName="country" placeholder="Country" />
+      </div>
+      <div>
+        <input type="number" formControlName="minRooms" placeholder="Min rooms" />
+      </div>
+      <div>
+        <input type="number" formControlName="minArea" placeholder="Min area" />
+      </div>
+      <div>
+        <button [disabled]="form.invalid">Search</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="ads-list">
+    <div *ngFor="let ad of ads" class="ad-card" (click)="open(ad)">
+      <img *ngIf="ad.urlPhotos?.length" [src]="ad.urlPhotos[0]" />
+      <div class="ad-body">
+        <h5>{{ ad.title }}</h5>
+        <p class="ad-location">{{ ad.city }}, {{ ad.country }}</p>
+        <p>{{ ad.description | slice : 0 : 100 }}...</p>
+        <div class="ad-details">
+          <small>Rooms: {{ ad.numberOfRooms }} • Area: {{ ad.homeArea }}</small>
+          <br />
+          <a [routerLink]="['/ad-detail', ad.id]" class="btn btn-primary">View Details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
