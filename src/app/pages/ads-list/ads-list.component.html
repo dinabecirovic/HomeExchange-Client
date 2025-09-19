@@ -3,19 +3,19 @@
     <h5>Search</h5>
     <form (ngSubmit)="search()" [formGroup]="form" class="search-form">
       <div>
-        <input formControlName="city" placeholder="City" />
+        <input formControlName="city" placeholder="Grad" />
       </div>
       <div>
-        <input formControlName="country" placeholder="Country" />
+        <input formControlName="country" placeholder="Država" />
       </div>
       <div>
-        <input type="number" formControlName="minRooms" placeholder="Min rooms" />
+        <input type="number" formControlName="minRooms" placeholder="Min soba" />
       </div>
       <div>
-        <input type="number" formControlName="minArea" placeholder="Min area" />
+        <input type="number" formControlName="minArea" placeholder="Min površina" />
       </div>
       <div>
-        <button [disabled]="form.invalid">Search</button>
+        <button [disabled]="form.invalid">Pretraži</button>
       </div>
     </form>
   </div>
@@ -28,9 +28,9 @@
         <p class="ad-location">{{ ad.city }}, {{ ad.country }}</p>
         <p>{{ ad.description | slice : 0 : 100 }}...</p>
         <div class="ad-details">
-          <small>Rooms: {{ ad.numberOfRooms }} • Area: {{ ad.homeArea }}</small>
+          <small>Sobe: {{ ad.numberOfRooms }} • Površina: {{ ad.homeArea }}</small>
           <br />
-          <a [routerLink]="['/ad-detail', ad.id]" class="btn btn-primary">View Details</a>
+          <a [routerLink]="['/ad-detail', ad.id]" class="btn btn-primary">Više...</a>
         </div>
       </div>
     </div>
