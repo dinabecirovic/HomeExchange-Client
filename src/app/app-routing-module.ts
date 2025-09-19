@@ -11,6 +11,7 @@ import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-das
 import { AdDetailComponent } from './pages/ad-detail/ad-detail.component';
 import { PendingAdsComponent } from './pages/admin/pending-ads/pending-ads.component';
 import { PendingUsersComponent } from './pages/admin/pending-users/pending-users.component';
+import { AllAdsComponent } from './pages/admin/all-ads/all-ads.component';
 
 const routes: Routes = [
   { path: '', component: AdsListComponent },
@@ -48,6 +49,12 @@ const routes: Routes = [
     data: { roles: ['Administrator'] },
   },
   { path: '**', redirectTo: '' },
+  {
+    path: 'all-ads',
+    component: AllAdsComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: { roles: ['Administrator'] },
+  },
 ];
 
 @NgModule({
