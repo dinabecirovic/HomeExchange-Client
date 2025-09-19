@@ -18,6 +18,7 @@
       <input type="password" class="form-control" formControlName="password" required />
     </div>
     <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+    <div *ngIf="success" class="alert alert-success">{{ success }}</div>
     <button class="btn btn-primary" type="submit">Registruj se</button>
   </form>
 </div>

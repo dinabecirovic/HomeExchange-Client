@@ -43,7 +43,7 @@ export class RegisterComponent {
       error: (err: any) => {
         console.error('Error:', err);
         this.loading = false;
-        this.error = err?.error?.message || 'Registration failed';
+        this.error = err?.error?.message || 'Registracija nije uspela.';
       },
     });
   }
