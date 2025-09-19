@@ -9,7 +9,7 @@
           <p class="text-muted">{{ ad.city }}, {{ ad.country }} • {{ ad.address }}</p>
           <p>{{ ad.description }}</p>
           <div>
-            <small>Rooms: {{ ad.numberOfRooms }} • Area: {{ ad.homeArea }}</small>
+            <small>Sobe: {{ ad.numberOfRooms }} • Površina: {{ ad.homeArea }}</small>
           </div>
         </div>
       </div>
@@ -19,7 +19,7 @@
     <div class="col-md-4">
       <!-- Reservation -->
       <div class="card p-3 mb-3">
-        <h6>Make reservation</h6>
+        <h6>Napravi rezervaciju</h6>
         <form [formGroup]="reservationForm">
           <div class="mb-2">
             <input type="datetime-local" class="form-control" formControlName="startDate" />
@@ -28,12 +28,12 @@
             <input type="datetime-local" class="form-control" formControlName="endDate" />
           </div>
         </form>
-        <button class="btn btn-primary w-100" (click)="createReservation()">Reserve</button>
+        <button class="btn btn-primary w-100" (click)="createReservation()">Rezerviši</button>
       </div>
 
       <!-- Rating -->
       <div class="card p-3">
-        <h6>Leave a rating</h6>
+        <h6>Ostavi ocenu</h6>
         <form [formGroup]="ratingForm">
           <div class="mb-2">
             <select class="form-select" formControlName="score">
@@ -44,7 +44,7 @@
             <textarea rows="3" class="form-control" formControlName="comment"></textarea>
           </div>
         </form>
-        <button class="btn btn-secondary w-100" (click)="createRating()">Submit</button>
+        <button class="btn btn-secondary w-100" (click)="createRating()">Oceni</button>
       </div>
     </div>
   </div>
