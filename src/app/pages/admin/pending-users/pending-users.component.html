@@ -1,13 +1,13 @@
 <div class="pending-users-container">
-  <h4>Pending Users</h4>
+  <h4>Korisnici na čekanju</h4>
   <table class="users-table">
     <thead>
       <tr>
         <th>#</th>
-        <th>Name</th>
+        <th>Ime</th>
         <th>Email</th>
-        <th>Role</th>
-        <th>Actions</th>
+        <th>Uloga</th>
+        <th>Akcija</th>
       </tr>
     </thead>
     <tbody>
@@ -17,7 +17,7 @@
         <td>{{ u.email }}</td>
         <td>{{ u.roles }}</td>
         <td>
-          <button (click)="approve(u.id)">Approve</button>
+          <button (click)="approve(u.id)">Odobri</button>
         </td>
       </tr>
     </tbody>
