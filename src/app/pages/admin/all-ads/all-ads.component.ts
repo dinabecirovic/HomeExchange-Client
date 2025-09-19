@@ -22,14 +22,13 @@ export class AllAdsComponent implements OnInit {
 
   approve(id: number) {
     this.admin.approveAd(id).subscribe(() => {
-      // Nakon odobravanja, ne uklanjamo oglas već samo update-ujemo status
       const ad = this.ads.find((a) => a.id === id);
       if (ad) ad.status = 'Approved';
     });
   }
 
-  del(id: number) {
-    if (confirm('Delete ad?')) {
+  delete(id: number) {
+    if (confirm('Da li želite da izbrišete oglas?')) {
       this.admin.deleteAd(id).subscribe(() => {
         this.ads = this.ads.filter((a) => a.id !== id);
       });
