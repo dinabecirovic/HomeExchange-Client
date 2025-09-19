@@ -1,32 +1,32 @@
 <div class="create-ad-container">
   <div class="create-ad-card">
-    <h4>Create Advertisement</h4>
+    <h4>Kreiraj oglas</h4>
     <form (ngSubmit)="submit()" [formGroup]="form">
       <div class="form-group">
-        <input formControlName="title" placeholder="Title" />
+        <input formControlName="title" placeholder="Naslov" />
       </div>
 
       <div class="form-group">
-        <textarea formControlName="description" placeholder="Description"></textarea>
+        <textarea formControlName="description" placeholder="Opis"></textarea>
       </div>
 
       <div class="form-group">
-        <input formControlName="address" placeholder="Address" />
+        <input formControlName="address" placeholder="Adresa" />
       </div>
 
       <div class="form-row">
-        <input formControlName="city" placeholder="City" />
-        <input formControlName="country" placeholder="Country" />
+        <input formControlName="city" placeholder="Grad" />
+        <input formControlName="country" placeholder="Drzava" />
       </div>
 
       <div class="form-row">
-        <input type="number" formControlName="numberOfRooms" placeholder="Rooms" />
-        <input type="number" formControlName="homeArea" placeholder="Area" />
+        <input type="number" formControlName="numberOfRooms" placeholder="Sobe" />
+        <input type="number" formControlName="homeArea" placeholder="Površina" />
       </div>
 
       <div class="form-check">
         <input type="checkbox" formControlName="garden" id="garden" />
-        <label for="garden">Garden</label>
+        <label for="garden">Dvorište</label>
       </div>
 
       <div class="form-check">
@@ -36,15 +36,15 @@
 
       <div class="form-check">
         <input type="checkbox" formControlName="swimmingPool" id="pool" />
-        <label for="pool">Swimming Pool</label>
+        <label for="pool">Bazen za plivanje</label>
       </div>
 
       <div class="form-group">
-        <label>Photos</label>
+        <label>Fotografija</label>
         <input type="file" (change)="onFileChange($event)" multiple />
       </div>
 
-      <button [disabled]="loading">Create</button>
+      <button [disabled]="loading">Kreiraj</button>
     </form>
   </div>
 </div>
