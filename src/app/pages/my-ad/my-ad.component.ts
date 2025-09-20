@@ -4,27 +4,22 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-ad',
-  standalone: false,
   templateUrl: './my-ad.component.html',
   styleUrl: './my-ad.component.css',
 })
 export class MyAdComponent implements OnInit {
   myAd: any[] = [];
-  currentUser: any = null;
 
   constructor(private adService: AdvertisementService, private router: Router) {}
 
   ngOnInit(): void {
-    this.currentUser = JSON.parse(localStorage.getItem('user') || 'null');
-    if (!this.currentUser) return;
-
     this.loadMyAd();
   }
 
   loadMyAd() {
     this.adService.getMyAdvertisements().subscribe({
       next: (ads: any[]) => {
-        this.myAd = ads;
+        this.myAd = ads; // backend vraća samo oglase trenutnog korisnika
       },
       error: (err) => {
         console.error('Failed to load my ads', err);
