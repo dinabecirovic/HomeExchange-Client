@@ -51,13 +51,12 @@ export class AdsListComponent implements OnInit {
     this.adService.getAll().subscribe({
       next: (ads) => {
         if (this.showOnlyMine) {
-          // samo oglasi trenutnog korisnika
           this.ads = (ads as any[]).filter((ad) => ad.homeOwnerId === this.currentUser?.id);
         } else {
-          // svi osim oglasa trenutnog korisnika
-          this.ads = (ads as any[]).filter((ad) => ad.homeOwnerId !== this.currentUser?.id);
+          this.ads = ads as any[];
         }
       },
+      error: (err) => console.error('Greška prilikom učitavanja oglasa', err),
     });
   }
 
