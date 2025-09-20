@@ -13,12 +13,28 @@
       </div>
     </div>
 
-    <div class="ad-availability">
-      <label>Availability</label>
-      <select [(ngModel)]="a.availability" (ngModelChange)="updateAvailability(a.id, $event)">
-        <option value="Available">Dostupno</option>
-        <option value="Unavailable">Nedostupno</option>
-      </select>
+    <div class="ad-card" [class.approved]="a.isApproved">
+      <div class="ad-header">
+        <div class="ad-info">
+          <h5>{{ a.title }}</h5>
+          <p class="ad-location">{{ a.city }}, {{ a.country }}</p>
+          <span *ngIf="a.isApproved" class="approved-label">Potvrđeno</span>
+        </div>
+        <div class="ad-actions">
+          <button class="approve-btn" (click)="approve(a.id)" [disabled]="a.isApproved">
+            Potvrdi
+          </button>
+          <button class="delete-btn" (click)="del(a.id)">Izbriši</button>
+        </div>
+      </div>
+
+      <div class="ad-availability">
+        <label>Dostupnost</label>
+        <select [(ngModel)]="a.availability" (ngModelChange)="updateAvailability(a.id, $event)">
+          <option value="Available">Dostupno</option>
+          <option value="Unavailable">Nedostupno</option>
+        </select>
+      </div>
     </div>
   </div>
 </div>

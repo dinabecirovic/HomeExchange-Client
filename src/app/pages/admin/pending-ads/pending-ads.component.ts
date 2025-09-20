@@ -17,8 +17,15 @@ export class PendingAdsComponent implements OnInit {
     this.admin.getPendingAds().subscribe((a) => (this.ads = a));
   }
   approve(id: number) {
-    this.admin.approveAd(id).subscribe(() => this.load());
+    this.admin.approveAd(id).subscribe(() => {
+      const ad = this.ads.find((a) => a.id === id);
+      if (ad) {
+        ad.isApproved = true;
+        alert('Oglas je potvrđen!');
+      }
+    });
   }
+
   del(id: number) {
     if (confirm('Delete ad?')) this.admin.deleteAd(id).subscribe(() => this.load());
   }
