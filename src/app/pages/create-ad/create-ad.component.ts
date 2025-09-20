@@ -44,6 +44,12 @@ export class CreateAdComponent {
 
   submit() {
     if (this.form.invalid) return;
+
+    const currentUser = JSON.parse(localStorage.getItem('user') || 'null');
+    if (!currentUser) {
+      alert('Morate biti prijavljeni kao vlasnik da biste kreirali oglas.');
+      return;
+    }
     const payload = {
       title: this.form.value.title,
       description: this.form.value.description,
@@ -56,13 +62,14 @@ export class CreateAdComponent {
       parkingSpace: this.form.value.parkingSpace,
       swimmingPool: this.form.value.swimmingPool,
       photos: this.files,
+      homeOwnerId: currentUser.id,
     };
     this.loading = true;
     this.adService.create(payload as any).subscribe({
       next: () => {
         this.loading = false;
         alert('Oglas je kreiran - čekajte odobrenje admina.');
-        this.router.navigate(['/ads']);
+        this.router.navigate(['/my-ad']);
       },
       error: (e) => {
         this.loading = false;
