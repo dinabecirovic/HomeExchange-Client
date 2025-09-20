@@ -18,7 +18,10 @@ export class AdvertisementService {
   }
 
   getMyAdvertisements() {
-    return this.http.get<any[]>(`${this.api}/HomeOwner/MyAdvertisements`);
+    const token = localStorage.getItem('auth_token');
+    return this.http.get<any[]>(`${this.api}/HomeOwner/MyAdvertisements`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
   }
 
   create(request: AdvertisementRequest) {

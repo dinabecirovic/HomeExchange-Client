@@ -15,7 +15,7 @@ import { AllAdsComponent } from './pages/admin/all-ads/all-ads.component';
 import { MyAdComponent } from './pages/my-ad/my-ad.component';
 
 const routes: Routes = [
-  { path: '', component: AdsListComponent },
+  { path: '/', component: AdsListComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   {

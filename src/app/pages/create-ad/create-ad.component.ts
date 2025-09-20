@@ -62,7 +62,6 @@ export class CreateAdComponent {
       parkingSpace: this.form.value.parkingSpace,
       swimmingPool: this.form.value.swimmingPool,
       photos: this.files,
-      homeOwnerId: currentUser.id,
     };
     this.loading = true;
     this.adService.create(payload as any).subscribe({
