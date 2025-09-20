@@ -17,7 +17,16 @@
 
     <!-- Right column -->
     <div class="col-md-4">
-      <!-- Reservation -->
+      <!-- Reservation status -->
+      <div
+        *ngIf="reservationStatus"
+        class="alert mt-2"
+        [ngClass]="reservationStatus.isConfirmed ? 'alert-success' : 'alert-warning'"
+      >
+        {{ reservationStatus.message }}
+      </div>
+
+      <!-- Reservation form -->
       <div class="card p-3 mb-3">
         <h6>Napravi rezervaciju</h6>
         <form [formGroup]="reservationForm">
@@ -31,7 +40,7 @@
         <button class="btn btn-primary w-100" (click)="createReservation()">Rezerviši</button>
       </div>
 
-      <!-- Rating -->
+      <!-- Rating form -->
       <div class="card p-3">
         <h6>Ostavi ocenu</h6>
         <form [formGroup]="ratingForm">

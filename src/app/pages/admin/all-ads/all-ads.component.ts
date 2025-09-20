@@ -27,7 +27,7 @@ export class AllAdsComponent implements OnInit {
     });
   }
 
-  delete(id: number) {
+  remove(id: number) {
     if (confirm('Da li želite da izbrišete oglas?')) {
       this.admin.deleteAd(id).subscribe(() => {
         this.ads = this.ads.filter((a) => a.id !== id);
