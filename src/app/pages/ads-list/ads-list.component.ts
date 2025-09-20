@@ -39,17 +39,9 @@ export class AdsListComponent implements OnInit {
     this.load();
   }
 
-  /* load() {
+  load() {
     this.adService.getAll().subscribe((a: any) => {
       this.ads = a.filter((x: any) => x.isApproved === true || x.isApproved == null);
-    });
-  }*/
-
-  load() {
-    this.adService.getAll().subscribe({
-      next: (ads) => {
-        this.ads = ads.filter((ad: any) => ad.homeOwnerId !== this.currentUser?.id);
-      },
     });
   }
 
