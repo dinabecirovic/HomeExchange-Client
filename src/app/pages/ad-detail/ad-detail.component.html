@@ -27,44 +27,46 @@
     </div>
 
     <!-- Right column -->
-    <div class="col-md-4">
-      <!-- Reservation status -->
-      <div
-        *ngIf="reservationStatus"
-        class="alert mt-2"
-        [ngClass]="reservationStatus.isConfirmed ? 'alert-success' : 'alert-warning'"
-      >
-        {{ reservationStatus.message }}
-      </div>
+    <div *ngIf="currentUser?.id !== ad.homeOwnerId">
+      <div class="col-md-4">
+        <!-- Reservation status -->
+        <div
+          *ngIf="reservationStatus"
+          class="alert mt-2"
+          [ngClass]="reservationStatus.isConfirmed ? 'alert-success' : 'alert-warning'"
+        >
+          {{ reservationStatus.message }}
+        </div>
 
-      <!-- Reservation form -->
-      <div class="card p-3 mb-3">
-        <h6>Napravi rezervaciju</h6>
-        <form [formGroup]="reservationForm">
-          <div class="mb-2">
-            <input type="datetime-local" class="form-control" formControlName="startDate" />
-          </div>
-          <div class="mb-2">
-            <input type="datetime-local" class="form-control" formControlName="endDate" />
-          </div>
-        </form>
-        <button class="btn btn-primary w-100" (click)="createReservation()">Rezerviši</button>
-      </div>
+        <!-- Reservation form -->
+        <div class="card p-3 mb-3">
+          <h6>Napravi rezervaciju</h6>
+          <form [formGroup]="reservationForm">
+            <div class="mb-2">
+              <input type="datetime-local" class="form-control" formControlName="startDate" />
+            </div>
+            <div class="mb-2">
+              <input type="datetime-local" class="form-control" formControlName="endDate" />
+            </div>
+          </form>
+          <button class="btn btn-primary w-100" (click)="createReservation()">Rezerviši</button>
+        </div>
 
-      <!-- Rating form -->
-      <div class="card p-3">
-        <h6>Ostavi ocenu</h6>
-        <form [formGroup]="ratingForm">
-          <div class="mb-2">
-            <select class="form-select" formControlName="score">
-              <option *ngFor="let s of [1, 2, 3, 4, 5]" [value]="s">{{ s }}</option>
-            </select>
-          </div>
-          <div class="mb-2">
-            <textarea rows="3" class="form-control" formControlName="comment"></textarea>
-          </div>
-        </form>
-        <button class="btn btn-secondary w-100" (click)="createRating()">Oceni</button>
+        <!-- Rating form -->
+        <div class="card p-3">
+          <h6>Ostavi ocenu</h6>
+          <form [formGroup]="ratingForm">
+            <div class="mb-2">
+              <select class="form-select" formControlName="score">
+                <option *ngFor="let s of [1, 2, 3, 4, 5]" [value]="s">{{ s }}</option>
+              </select>
+            </div>
+            <div class="mb-2">
+              <textarea rows="3" class="form-control" formControlName="comment"></textarea>
+            </div>
+          </form>
+          <button class="btn btn-secondary w-100" (click)="createRating()">Oceni</button>
+        </div>
       </div>
     </div>
   </div>
