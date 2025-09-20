@@ -9,25 +9,19 @@ import { AdminService } from '../../../core/services/admin.service';
 })
 export class PendingAdsComponent implements OnInit {
   ads: any[] = [];
-
   constructor(private admin: AdminService) {}
-
   ngOnInit() {
     this.load();
   }
-
   load() {
     this.admin.getPendingAds().subscribe((a) => (this.ads = a));
   }
-
   approve(id: number) {
     this.admin.approveAd(id).subscribe(() => this.load());
   }
-
   del(id: number) {
     if (confirm('Delete ad?')) this.admin.deleteAd(id).subscribe(() => this.load());
   }
-
   updateAvailability(id: number, val: string) {
     this.admin.updateAvailability(id, val).subscribe(() => this.load());
   }
