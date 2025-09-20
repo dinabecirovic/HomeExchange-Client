@@ -14,6 +14,7 @@ export class AdsListComponent implements OnInit {
   ads: AdvertisementResponse[] = [];
   form;
   currentUser: any = null;
+  showOnlyMine: boolean = false;
 
   constructor(
     private adService: AdvertisementService,
@@ -36,12 +37,27 @@ export class AdsListComponent implements OnInit {
   }*/
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('user') || 'null');
+    this.showOnlyMine = this.router.url.includes('my-ad');
     this.load();
   }
 
-  load() {
+  /*load() {
     this.adService.getAll().subscribe((a: any) => {
       this.ads = a.filter((x: any) => x.isApproved === true || x.isApproved == null);
+    });
+  }*/
+
+  load() {
+    this.adService.getAll().subscribe({
+      next: (ads) => {
+        if (this.showOnlyMine) {
+          // samo oglasi trenutnog korisnika
+          this.ads = (ads as any[]).filter((ad) => ad.homeOwnerId === this.currentUser?.id);
+        } else {
+          // svi osim oglasa trenutnog korisnika
+          this.ads = (ads as any[]).filter((ad) => ad.homeOwnerId !== this.currentUser?.id);
+        }
+      },
     });
   }
 

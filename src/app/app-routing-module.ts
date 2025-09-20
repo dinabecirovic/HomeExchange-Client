@@ -12,6 +12,7 @@ import { AdDetailComponent } from './pages/ad-detail/ad-detail.component';
 import { PendingAdsComponent } from './pages/admin/pending-ads/pending-ads.component';
 import { PendingUsersComponent } from './pages/admin/pending-users/pending-users.component';
 import { AllAdsComponent } from './pages/admin/all-ads/all-ads.component';
+import { MyAdComponent } from './pages/my-ad/my-ad.component';
 
 const routes: Routes = [
   { path: '', component: AdsListComponent },
@@ -20,6 +21,12 @@ const routes: Routes = [
   {
     path: 'create-ad',
     component: CreateAdComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: { roles: ['HomeOwner'] },
+  },
+  {
+    path: 'my-ad',
+    component: MyAdComponent,
     canActivate: [AuthGuard, RoleGuard],
     data: { roles: ['HomeOwner'] },
   },
