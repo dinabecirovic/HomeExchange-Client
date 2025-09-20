@@ -21,6 +21,9 @@ export class AdDetailComponent implements OnInit, OnDestroy {
 
   reservationStatus: { isConfirmed: boolean; message: string } | null = null;
 
+  editForm!: FormGroup;
+  isEditing = false;
+
   private pollingSub: Subscription | null = null;
 
   constructor(
@@ -39,18 +42,32 @@ export class AdDetailComponent implements OnInit, OnDestroy {
       score: [5, Validators.required],
       comment: ['', Validators.required],
     });
+
+    this.editForm = this.fb.group({
+      description: ['', Validators.required],
+      garden: [false],
+      parkingSpace: [false],
+      swimmingPool: [false],
+    });
   }
 
   ngOnInit() {
-    // Učitavanje trenutnog korisnika iz localStorage
     this.currentUser = JSON.parse(localStorage.getItem('user') || 'null');
 
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if (!id) return;
 
-    // Učitavanje oglasa
     this.adService.getById(id).subscribe({
-      next: (a: any) => (this.ad = a),
+      next: (a: any) => {
+        this.ad = a;
+
+        this.editForm.patchValue({
+          description: a.description,
+          garden: a.garden,
+          parkingSpace: a.parkingSpace,
+          swimmingPool: a.swimmingPool,
+        });
+      },
       error: () => alert('Failed to load advertisement.'),
     });
 
@@ -132,6 +149,47 @@ export class AdDetailComponent implements OnInit, OnDestroy {
       error: (err) => {
         console.error(err);
         alert('Slanje ocene nije uspelo.');
+      },
+    });
+  }
+
+  toggleEdit() {
+    this.isEditing = !this.isEditing;
+  }
+
+  // DODATO: update oglasa
+  updateAd() {
+    if (!this.editForm.valid || !this.ad) return;
+
+    const body = this.editForm.value;
+
+    this.adService.update(this.ad.id, body).subscribe({
+      next: (res) => {
+        alert('Oglas uspešno ažuriran!');
+        this.ad = { ...this.ad, ...body }; // osveži prikaz
+        this.isEditing = false;
+      },
+      error: (err) => {
+        console.error(err);
+        alert('Ažuriranje oglasa nije uspelo.');
+      },
+    });
+  }
+
+  // DODATO: brisanje oglasa
+  deleteAd() {
+    if (!this.ad) return;
+
+    if (!confirm('Da li ste sigurni da želite da obrišete oglas?')) return;
+
+    this.adService.delete(this.ad.id).subscribe({
+      next: () => {
+        alert('Oglas obrisan!');
+        window.location.href = '/my-ads';
+      },
+      error: (err) => {
+        console.error(err);
+        alert('Brisanje oglasa nije uspelo.');
       },
     });
   }
