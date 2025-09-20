@@ -1,23 +1,20 @@
 <div class="pending-ads-container">
-  <h4>Oglasi</h4>
+  <h4>Oglas</h4>
 
   <div *ngFor="let a of ads" class="ad-card">
     <div class="ad-header">
       <div class="ad-info">
         <h5>{{ a.title }}</h5>
         <p class="ad-location">{{ a.city }}, {{ a.country }}</p>
-        <p>
-          Status: <b>{{ a.status }}</b>
-        </p>
       </div>
       <div class="ad-actions">
-        <button *ngIf="a.status === 'Pending'" (click)="approve(a.id)">Odobri</button>
-        <button (click)="del(a.id)">Izbriši</button>
+        <button class="approve-btn" (click)="approve(a.id)">Potvrdi</button>
+        <button class="delete-btn" (click)="del(a.id)">Izbriši</button>
       </div>
     </div>
 
-    <div *ngIf="a.status === 'Approved'" class="ad-availability">
-      <label>Dostupnost</label>
+    <div class="ad-availability">
+      <label>Availability</label>
       <select [(ngModel)]="a.availability" (ngModelChange)="updateAvailability(a.id, $event)">
         <option value="Available">Dostupno</option>
         <option value="Unavailable">Nedostupno</option>
