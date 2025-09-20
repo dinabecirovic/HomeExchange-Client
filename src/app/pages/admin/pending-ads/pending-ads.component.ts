@@ -30,6 +30,12 @@ export class PendingAdsComponent implements OnInit {
     if (confirm('Delete ad?')) this.admin.deleteAd(id).subscribe(() => this.load());
   }
   updateAvailability(id: number, val: string) {
-    this.admin.updateAvailability(id, val).subscribe(() => this.load());
+    this.admin.updateAvailability(id, val).subscribe(() => {
+      const ad = this.ads.find((a) => a.id === id);
+      if (ad) {
+        ad.availability = val;
+      }
+      alert('Dostupnost ažurirana!');
+    });
   }
 }
