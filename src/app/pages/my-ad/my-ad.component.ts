@@ -22,12 +22,12 @@ export class MyAdComponent implements OnInit {
   }
 
   loadMyAd() {
-    this.adService.getAll().subscribe({
-      next: (ad: any[]) => {
-        this.myAd = ad.filter((ad) => ad.homeOwnerId === this.currentUser.id);
+    this.adService.getMyAdvertisements().subscribe({
+      next: (ads: any[]) => {
+        this.myAd = ads;
       },
       error: (err) => {
-        console.error('Failed to load ads', err);
+        console.error('Failed to load my ads', err);
       },
     });
   }

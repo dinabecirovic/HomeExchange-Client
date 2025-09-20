@@ -17,6 +17,10 @@ export class AdvertisementService {
     return this.http.get<AdvertisementResponse>(`${this.api}/HomeOwner/Advertisements/${id}`);
   }
 
+  getMyAdvertisements() {
+    return this.http.get<any[]>(`${this.api}/HomeOwner/MyAdvertisements`);
+  }
+
   create(request: AdvertisementRequest) {
     const token = localStorage.getItem('auth_token');
     const form = new FormData();
