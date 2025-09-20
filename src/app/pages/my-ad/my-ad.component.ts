@@ -25,6 +25,7 @@ export class MyAdComponent implements OnInit {
     this.adService.getAll().subscribe({
       next: (ad: any[]) => {
         this.myAd = ad.filter((ad) => ad.homeOwnerId === this.currentUser.id);
+        console.log('My Ads:', this.myAd);
       },
       error: (err) => {
         console.error('Failed to load ads', err);
