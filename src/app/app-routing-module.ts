@@ -26,7 +26,7 @@ const routes: Routes = [
   },
   {
     path: 'my-ad',
-    component: MyAdComponent,
+    component: AdsListComponent,
     canActivate: [AuthGuard, RoleGuard],
     data: { roles: ['HomeOwner'] },
   },
