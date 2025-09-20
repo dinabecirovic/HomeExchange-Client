@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class AdsListComponent implements OnInit {
   ads: AdvertisementResponse[] = [];
   form;
+  currentUser: any = null;
 
   constructor(
     private adService: AdvertisementService,
@@ -30,13 +31,25 @@ export class AdsListComponent implements OnInit {
     });
   }
 
+  /* ngOnInit() {
+    this.load();
+  }*/
   ngOnInit() {
+    this.currentUser = JSON.parse(localStorage.getItem('user') || 'null');
     this.load();
   }
 
-  load() {
+  /* load() {
     this.adService.getAll().subscribe((a: any) => {
       this.ads = a.filter((x: any) => x.isApproved === true || x.isApproved == null);
+    });
+  }*/
+
+  load() {
+    this.adService.getAll().subscribe({
+      next: (ads) => {
+        this.ads = ads.filter((ad: any) => ad.homeOwnerId !== this.currentUser?.id);
+      },
     });
   }
 

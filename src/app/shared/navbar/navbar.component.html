@@ -4,7 +4,9 @@
     <div class="navbar-links">
       <ul class="nav-left">
         <li><a routerLink="/ads"></a></li>
-        <li *ngIf="isHomeOwner"><a routerLink="create-ad">Kreiraj oglas</a></li>
+        <li *ngIf="isHomeOwner"><a routerLink="/my-ads">Moji oglasi</a></li>
+        <li *ngIf="isHomeOwner"><a routerLink="/create-ad">Kreiraj oglas</a></li>
+        <li *ngIf="isHomeOwner"><a routerLink="/reservations">Rezervacije</a></li>
         <li *ngIf="isAdmin"><a routerLink="/all-ads">Oglasi</a></li>
         <li *ngIf="isAdmin"><a routerLink="/pending-ads">Oglasi na cekanju</a></li>
         <li *ngIf="isAdmin"><a routerLink="/pending-users">Korisnici</a></li>

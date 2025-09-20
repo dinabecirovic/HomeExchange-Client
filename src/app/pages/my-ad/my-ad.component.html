@@ -1,0 +1,35 @@
+<div class="container py-4">
+  <h3>Moji oglasi</h3>
+
+  <div class="ads-list">
+    <div *ngFor="let ad of myAd" class="ad-card card mb-3">
+      <div class="row g-0">
+        <div class="col-md-4" *ngIf="ad.urlPhotos?.length">
+          <img [src]="ad.urlPhotos[0]" class="img-fluid rounded-start" />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{ ad.title }}</h5>
+            <p class="card-text">{{ ad.description | slice : 0 : 100 }}...</p>
+            <p class="card-text">
+              <small class="text-muted">{{ ad.city }}, {{ ad.country }}</small>
+            </p>
+            <p class="card-text">
+              <small>Sobe: {{ ad.numberOfRooms }} • Površina: {{ ad.homeArea }} m²</small>
+            </p>
+            <div class="d-flex gap-2">
+              <button class="btn btn-primary" (click)="editAd(ad)">Izmeni</button>
+              <button class="btn btn-danger" (click)="deleteAd(ad.id)">Obriši</button>
+              <a [routerLink]="['/ad-detail', ad.id]" class="btn btn-secondary">Detalji</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="myAd.length === 0" class="text-center py-4 no-ads">
+      <p>Nemate kreiranih oglasa.</p>
+      <a routerLink="/create-ad" class="btn btn-success">Kreiraj oglas</a>
+    </div>
+  </div>
+</div>

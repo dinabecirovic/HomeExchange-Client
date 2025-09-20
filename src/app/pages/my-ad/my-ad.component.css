@@ -1,0 +1,47 @@
+.container h3 {
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.ads-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ad-card {
+  transition: box-shadow 0.3s ease;
+}
+
+.ad-card:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.ad-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-body h5 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.card-body p {
+  margin-bottom: 0.3rem;
+}
+
+.d-flex .btn {
+  min-width: 80px;
+}
+
+.no-ads p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.no-ads a.btn {
+  margin-top: 0.5rem;
+}

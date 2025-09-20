@@ -3,13 +3,24 @@
     <!-- Left column -->
     <div class="col-md-8">
       <div class="card mb-3">
-        <img *ngIf="ad.urlPhotos?.length" [src]="ad.urlPhotos[0]" class="card-img-top ad-image" />
+        <!--img *ngIf="ad.urlPhotos?.length" [src]="ad.urlPhotos[0]" class="card-img-top ad-image" /-->
+        <div class="ad-images" *ngIf="ad.urlPhotos?.length">
+          <img *ngFor="let photo of ad.urlPhotos" [src]="photo" class="img-fluid mb-2" />
+        </div>
+
         <div class="card-body">
           <h3>{{ ad.title }}</h3>
           <p class="text-muted">{{ ad.city }}, {{ ad.country }} • {{ ad.address }}</p>
           <p>{{ ad.description }}</p>
           <div>
             <small>Sobe: {{ ad.numberOfRooms }} • Površina: {{ ad.homeArea }}</small>
+            <br />
+            <small
+              >Dvorište: {{ ad.garden }} • Parking mesto: {{ ad.parkingSpace }} • Bazen:
+              {{ ad.swimmingPool }}
+            </small>
+            <br />
+            <small> Datum objavljivanja: {{ ad.date }}</small>
           </div>
         </div>
       </div>
