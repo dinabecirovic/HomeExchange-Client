@@ -44,12 +44,6 @@ export class CreateAdComponent {
 
   submit() {
     if (this.form.invalid) return;
-
-    const currentUser = JSON.parse(localStorage.getItem('user') || 'null');
-    if (!currentUser) {
-      alert('Morate biti prijavljeni kao vlasnik da biste kreirali oglas.');
-      return;
-    }
     const payload = {
       title: this.form.value.title,
       description: this.form.value.description,
