@@ -32,22 +32,22 @@ export class AdsListComponent implements OnInit {
     });
   }
 
-  /* ngOnInit() {
-    this.load();
-  }*/
   ngOnInit() {
+    this.load();
+  }
+  /* ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('user') || 'null');
     this.showOnlyMine = this.router.url.includes('my-ad');
     this.load();
-  }
-
-  /*load() {
-    this.adService.getAll().subscribe((a: any) => {
-      this.ads = a.filter((x: any) => x.isApproved === true || x.isApproved == null);
-    });
   }*/
 
   load() {
+    this.adService.getAll().subscribe((a: any) => {
+      this.ads = a.filter((x: any) => x.isApproved === true || x.isApproved == null);
+    });
+  }
+
+  /*load() {
     this.adService.getAll().subscribe({
       next: (ads) => {
         if (this.showOnlyMine) {
@@ -58,7 +58,7 @@ export class AdsListComponent implements OnInit {
       },
       error: (err) => console.error('Greška prilikom učitavanja oglasa', err),
     });
-  }
+  }*/
 
   search() {
     const criteria = { ...this.form.value };
