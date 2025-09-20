@@ -59,8 +59,6 @@ const routes: Routes = [
   {
     path: 'all-ads',
     component: AllAdsComponent,
-    canActivate: [AuthGuard, RoleGuard],
-    data: { roles: ['Administrator'] },
   },
 ];
 
