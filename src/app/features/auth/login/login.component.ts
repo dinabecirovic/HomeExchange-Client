@@ -19,7 +19,7 @@ export class LoginComponent {
     this.auth.login(this.model).subscribe({
       next: (res) => {
         const role = this.auth.getRole();
-        if (role === 'Administrator') this.router.navigate(['/admin']);
+        if (role === 'Administrator') this.router.navigate(['/ads-list']);
         else this.router.navigate(['/']);
       },
       error: (err) => {

@@ -28,6 +28,7 @@ export class PendingAdsComponent implements OnInit {
 
   del(id: number) {
     if (confirm('Delete ad?')) this.admin.deleteAd(id).subscribe(() => this.load());
+    alert('Oglas izbrisan!');
   }
   updateAvailability(id: number, val: string) {
     this.admin.updateAvailability(id, val).subscribe(() => {
