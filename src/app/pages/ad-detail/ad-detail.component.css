@@ -67,6 +67,10 @@ textarea {
   background-color: #fff;
   border: 1px solid #cecece;
 }
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
 
 /* Alert */
 .alert {
