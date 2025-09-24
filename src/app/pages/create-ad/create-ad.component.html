@@ -4,24 +4,63 @@
     <form (ngSubmit)="submit()" [formGroup]="form">
       <div class="form-group">
         <input formControlName="title" placeholder="Naslov" />
+        <div class="error" *ngIf="form.controls['title'].errors?.capitalLetter">
+          Naslov mora početi velikim slovom
+        </div>
       </div>
 
       <div class="form-group">
         <textarea formControlName="description" placeholder="Opis"></textarea>
+        <div
+          class="error"
+          *ngIf="form.controls['description'].touched && form.controls['description'].invalid"
+        >
+          Opis je obavezan
+        </div>
       </div>
 
       <div class="form-group">
         <input formControlName="address" placeholder="Adresa" />
+        <div
+          class="error"
+          *ngIf="form.controls['address'].touched && form.controls['address'].invalid"
+        >
+          Adresa je obavezna
+        </div>
       </div>
 
       <div class="form-row">
         <input formControlName="city" placeholder="Grad" />
-        <input formControlName="country" placeholder="Drzava" />
+        <div class="error" *ngIf="form.controls['city'].errors?.capitalLetter">
+          Ime grada mora početi velikim slovom
+        </div>
+        <div class="form-subgroup">
+          <input formControlName="country" placeholder="Država" />
+          <div class="error" *ngIf="form.controls['country'].errors?.capitalLetter">
+            Ime države mora početi velikim slovom
+          </div>
+        </div>
       </div>
 
       <div class="form-row">
-        <input type="number" formControlName="numberOfRooms" placeholder="Sobe" />
-        <input type="number" formControlName="homeArea" placeholder="Površina" />
+        <div class="form-subgroup">
+          <input type="number" formControlName="numberOfRooms" placeholder="Sobe" />
+          <div
+            class="error"
+            *ngIf="form.controls['numberOfRooms'].touched && form.controls['numberOfRooms'].invalid"
+          >
+            Broj soba je obavezan
+          </div>
+        </div>
+        <div class="form-subgroup">
+          <input type="number" formControlName="homeArea" placeholder="Površina" />
+          <div
+            class="error"
+            *ngIf="form.controls['homeArea'].touched && form.controls['homeArea'].invalid"
+          >
+            Površina je obavezna
+          </div>
+        </div>
       </div>
 
       <div class="form-check">

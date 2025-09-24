@@ -3,22 +3,55 @@
   <form [formGroup]="form" (ngSubmit)="submit()">
     <div class="form-group">
       <label>Ime</label>
-      <input type="text" class="form-control" formControlName="firstName" required />
+      <input type="text" class="form-control" formControlName="firstName" />
+      <div
+        class="error"
+        *ngIf="form.controls['firstName'].touched && form.controls['firstName'].invalid"
+      >
+        Ime je obavezno
+      </div>
     </div>
+
     <div class="form-group">
       <label>Prezime</label>
       <input type="text" class="form-control" formControlName="lastName" />
+      <div
+        class="error"
+        *ngIf="form.controls['lastName'].touched && form.controls['lastName'].invalid"
+      >
+        Prezime je obavezno
+      </div>
     </div>
+
     <div class="form-group">
       <label>Email</label>
-      <input type="email" class="form-control" formControlName="email" required />
+      <input type="email" class="form-control" formControlName="email" />
+      <div class="error" *ngIf="form.controls['email'].touched && form.controls['email'].invalid">
+        <div *ngIf="form.controls['email'].errors?.['required']">Email je obavezan</div>
+        <div *ngIf="form.controls['email'].errors?.['email']">Unesite validan email</div>
+      </div>
     </div>
+
     <div class="form-group">
       <label>Lozinka</label>
-      <input type="password" class="form-control" formControlName="password" required />
+      <input type="password" class="form-control" formControlName="password" />
+      <div
+        class="error"
+        *ngIf="form.controls['password'].touched && form.controls['password'].invalid"
+      >
+        <div *ngIf="form.controls['password'].errors?.['required']">Lozinka je obavezna</div>
+        <div *ngIf="form.controls['password'].errors?.['minlength']">
+          Lozinka mora imati najmanje 8 karaktera
+        </div>
+        <div *ngIf="form.controls['password'].errors?.['pattern']">
+          Lozinka mora imati veliko slovo, broj i specijalni znak
+        </div>
+      </div>
     </div>
+
     <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
     <div *ngIf="success" class="alert alert-success">{{ success }}</div>
-    <button class="btn btn-primary" type="submit">Registruj se</button>
+
+    <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Registruj se</button>
   </form>
 </div>

@@ -1,9 +1,17 @@
 import { Component } from '@angular/core';
-import { Validators } from '@angular/forms';
+import { Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AdvertisementService } from '../../core/services/advertisement.service';
 import { FormGroup } from '@angular/forms';
+
+function capitalLetterValidator(control: AbstractControl): ValidationErrors | null {
+  const value = control.value;
+  if (value && value.length > 0 && value[0] !== value[0].toUpperCase()) {
+    return { capitalLetter: true };
+  }
+  return null;
+}
 
 @Component({
   selector: 'app-create-ad',
@@ -22,11 +30,11 @@ export class CreateAdComponent {
     private router: Router
   ) {
     this.form = this.fb.group({
-      title: ['', Validators.required],
+      title: ['', [Validators.required, capitalLetterValidator]],
       description: ['', Validators.required],
       address: ['', Validators.required],
-      city: ['', Validators.required],
-      country: ['', Validators.required],
+      city: ['', [Validators.required, capitalLetterValidator]],
+      country: ['', [Validators.required, capitalLetterValidator]],
       numberOfRooms: [1, Validators.required],
       homeArea: [10, Validators.required],
       garden: [false],
