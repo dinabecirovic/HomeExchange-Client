@@ -5,12 +5,8 @@
   gap: 40px;
 }
 
-.col-md-8 {
-  width: 55%;
-}
-
-.col-md-4 {
-  width: 43%;
+.col-md-8 .col-md-4 {
+  width: 100%;
 }
 
 .card {
