@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdvertisementService } from '../../core/services/advertisement.service';
-import { Router } from '@angular/router';
+import { AdvertisementResponse } from '../../core/models/advertisement.model';
 
 @Component({
   selector: 'app-my-ad',
@@ -9,44 +9,27 @@ import { Router } from '@angular/router';
   styleUrl: './my-ad.component.css',
 })
 export class MyAdComponent implements OnInit {
-  myAd: any[] = [];
-  currentUser: any = null;
+  myAds: AdvertisementResponse[] = [];
+  loading = false;
+  error: string = '';
 
-  constructor(private adService: AdvertisementService, private router: Router) {}
+  constructor(private adService: AdvertisementService) {}
 
   ngOnInit(): void {
-    this.currentUser = JSON.parse(localStorage.getItem('user') || 'null');
-    if (!this.currentUser) return;
-
-    this.loadMyAd();
+    this.loadMyAdvertisements();
   }
 
-  loadMyAd() {
+  loadMyAdvertisements(): void {
+    this.loading = true;
     this.adService.getMyAdvertisements().subscribe({
-      next: (ads: any[]) => {
-        this.myAd = ads;
+      next: (ads) => {
+        this.myAds = ads;
+        this.loading = false;
       },
       error: (err) => {
-        console.error('Failed to load my ads', err);
-      },
-    });
-  }
-
-  editAd(ad: any) {
-    this.router.navigate(['/create-ad'], { state: { ad } });
-  }
-
-  deleteAd(adId: number) {
-    if (!confirm('Da li ste sigurni da želite da obrišete oglas?')) return;
-
-    this.adService.delete(adId).subscribe({
-      next: () => {
-        alert('Oglas uspešno obrisan!');
-        this.loadMyAd();
-      },
-      error: (err) => {
-        console.error('Delete failed', err);
-        alert('Brisanje oglasa nije uspelo.');
+        console.error(err);
+        this.error = 'Neuspešno učitavanje oglasa';
+        this.loading = false;
       },
     });
   }
