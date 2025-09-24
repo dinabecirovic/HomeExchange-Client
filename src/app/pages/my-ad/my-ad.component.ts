@@ -24,7 +24,6 @@ export class MyAdComponent implements OnInit {
   loadMyAd() {
     this.adService.getMyAdvertisements().subscribe({
       next: (ads: any[]) => {
-        console.log('myAds response:', ads);
         this.myAd = ads;
       },
       error: (err) => {

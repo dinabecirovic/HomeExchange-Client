@@ -17,7 +17,7 @@ export class AdvertisementService {
     return this.http.get<AdvertisementResponse>(`${this.api}/HomeOwner/Advertisements/${id}`);
   }
 
-  getMyAdvertisements() {
+  getMyAdvertisements(): Observable<any[]> {
     const token = localStorage.getItem('auth_token');
     return this.http.get<any[]>(`${this.api}/HomeOwner/MyAdvertisements`, {
       headers: { Authorization: `Bearer ${token}` },
