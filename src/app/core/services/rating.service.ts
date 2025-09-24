@@ -18,4 +18,7 @@ export class RatingService {
       headers: this.getAuthHeaders(),
     });
   }
+  getRatingByAdvertisement(advertisementId: number) {
+    return this.http.get<any[]>(`/api/HomeOwner/Ratings/${advertisementId}`);
+  }
 }

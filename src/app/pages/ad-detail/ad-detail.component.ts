@@ -27,6 +27,9 @@ export class AdDetailComponent implements OnInit, OnDestroy {
   bookedPeriods: { startDate: string; endDate: string }[] = [];
   minDate = new Date(); // zabrana prošlih datuma
 
+  // NOVO: lista recenzija
+  ratings: any[] = [];
+
   constructor(
     private route: ActivatedRoute,
     private adService: AdvertisementService,
@@ -64,6 +67,9 @@ export class AdDetailComponent implements OnInit, OnDestroy {
           },
           error: () => console.error('Ne mogu da učitam zauzete termine.'),
         });
+
+        // NOVO: učitaj recenzije
+        this.loadRatings();
       },
       error: () => alert('neuspesno ucitan oglas.'),
     });
@@ -85,19 +91,16 @@ export class AdDetailComponent implements OnInit, OnDestroy {
     const end = new Date(this.reservationForm.value.endDate);
     const today = new Date();
 
-    // Ne može datum u prošlosti
     if (start < today || end < today) {
       alert('Ne možete rezervisati termine u prošlosti.');
       return;
     }
 
-    // Kraj mora biti posle početka
     if (end <= start) {
       alert('Datum završetka mora biti posle datuma početka.');
       return;
     }
 
-    // Provera zauzetih termina
     for (let b of this.bookedPeriods) {
       const bStart = new Date(b.startDate);
       const bEnd = new Date(b.endDate);
@@ -154,10 +157,27 @@ export class AdDetailComponent implements OnInit, OnDestroy {
       next: (res) => {
         alert('Ocena uspešno poslata!');
         this.ratingForm.reset({ score: 5, comment: '' });
+
+        // NOVO: osveži listu recenzija nakon slanja
+        this.loadRatings();
       },
       error: (err) => {
         console.error(err);
         alert('Slanje ocene nije uspelo.');
+      },
+    });
+  }
+
+  // NOVO: metoda za učitavanje liste recenzija
+  loadRatings() {
+    if (!this.ad || !this.ad.id) return;
+
+    this.ratingService.getRatingByAdvertisement(this.ad.id).subscribe({
+      next: (res: any[]) => {
+        this.ratings = res;
+      },
+      error: (err) => {
+        console.error('Greška pri učitavanju ocena', err);
       },
     });
   }

@@ -83,6 +83,21 @@
           </form>
           <button class="btn btn-secondary w-100" (click)="createRating()">Oceni</button>
         </div>
+        <div class="card p-3 mt-3">
+          <h6>Recenzije</h6>
+
+          <div *ngIf="ratings.length > 0; else noRatings">
+            <div *ngFor="let r of ratings" class="border p-2 mb-2 rounded">
+              <p>⭐ {{ r.score }} / 5</p>
+              <p>{{ r.comment }}</p>
+              <small>Korisnik: {{ r.userId }}</small>
+            </div>
+          </div>
+
+          <ng-template #noRatings>
+            <p>Još nema recenzija za ovaj oglas.</p>
+          </ng-template>
+        </div>
       </div>
     </div>
   </div>
