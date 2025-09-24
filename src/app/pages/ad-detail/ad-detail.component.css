@@ -1,98 +1,99 @@
+/* Generalni padding za container */
 .container.py-4 {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 1rem;
-  font-family: Arial, sans-serif;
-  color: #333;
 }
 
+/* Kartice */
 .card {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #fff;
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.05);
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.ad-image {
-  width: 100%;
-  height: auto;
-  border-bottom: 1px solid #ddd;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
-.card-body h3 {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-  font-size: 1.5rem;
-  color: #222;
+/* Razmak između kartica */
+.card + .card {
+  margin-top: 20px;
 }
 
-.card-body p {
-  margin-bottom: 0.5rem;
-  line-height: 1.4;
+/* Slike oglasa */
+.ad-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
 }
 
-.card-body small {
+.ad-images img {
+  flex: 1 1 calc(50% - 10px);
+  object-fit: cover;
+  border-radius: 10px;
+  max-height: 200px;
+}
+
+/* Naslovi i tekst */
+h3 {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+p {
+  line-height: 1.6;
+}
+
+small {
+  display: block;
+  margin-top: 5px;
   color: #555;
 }
 
-.col-md-4 .card {
-  width: 40%;
-  margin-bottom: 1rem;
-  padding: 1rem;
-}
-
-.form-control,
-.form-select {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 0.95rem;
-  margin-bottom: 0.5rem;
-}
-
-.form-control:focus,
-.form-select:focus {
-  outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 3px rgba(0, 123, 255, 0.3);
-}
-
-.btn {
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  font-size: 0.95rem;
-  cursor: pointer;
-}
-
-.btn-primary {
-  background-color: #007bff;
-  border: none;
-  color: white;
-}
-
-.btn-primary:hover {
-  background-color: #0069d9;
-}
-
-.btn-secondary {
-  background-color: #6c757d;
-  border: none;
-  color: white;
-}
-
-.btn-secondary:hover {
-  background-color: #5a6268;
-}
-
-.mb-2 {
-  margin-bottom: 0.5rem;
-}
-
+/* Rezervacija i ocene */
 .card h6 {
-  font-weight: bold;
-  margin-bottom: 0.75rem;
-  color: #333;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+form .form-control,
+form .form-select {
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+button.btn {
+  border-radius: 8px;
+  font-weight: 500;
+  padding: 10px 15px;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+button.btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Alert */
+.alert {
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+/* Recenzije */
+.card p {
+  margin-bottom: 5px;
+}
+
+.border {
+  border: 1px solid #e0e0e0 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .ad-images img {
+    flex: 1 1 100%;
+  }
 }
