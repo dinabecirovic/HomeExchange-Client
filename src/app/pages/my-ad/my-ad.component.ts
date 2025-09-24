@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AdvertisementService } from '../../core/services/advertisement.service';
 import { AdvertisementResponse } from '../../core/models/advertisement.model';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-ad',
@@ -10,10 +12,18 @@ import { AdvertisementResponse } from '../../core/models/advertisement.model';
 })
 export class MyAdComponent implements OnInit {
   myAds: AdvertisementResponse[] = [];
+  form: FormGroup;
   loading = false;
-  error: string = '';
+  error = '';
 
-  constructor(private adService: AdvertisementService) {}
+  constructor(private adService: AdvertisementService, private fb: FormBuilder) {
+    this.form = this.fb.group({
+      city: [''],
+      country: [''],
+      minRooms: [''],
+      minArea: [''],
+    });
+  }
 
   ngOnInit(): void {
     this.loadMyAdvertisements();
@@ -32,5 +42,9 @@ export class MyAdComponent implements OnInit {
         this.loading = false;
       },
     });
+  }
+
+  open(ad: AdvertisementResponse): void {
+    console.log('Otvoren oglas:', ad);
   }
 }

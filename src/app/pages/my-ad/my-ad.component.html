@@ -1,15 +1,14 @@
- <div class="ads-list">
-    <div *ngFor="let ad of myAds" class="ad-card" (click)="open(ad)">
-      <img *ngIf="ad.urlPhotos?.length" [src]="ad.urlPhotos[0]" />
-      <div class="ad-body">
-        <h5>{{ ad.title }}</h5>
-        <p class="ad-location">{{ ad.city }}, {{ ad.country }}</p>
-        <p>{{ ad.description | slice:0:100 }}...</p>
-        <div class="ad-details">
-          <small>Sobe: {{ ad.numberOfRooms }} • Površina: {{ ad.homeArea }}</small>
-          <br />
-          <a [routerLink]="['/ad-detail', ad.id]" class="btn btn-primary">Više...</a>
-        </div>
+<div class="ads-list">
+  <div *ngFor="let ad of myAds" class="ad-card" (click)="open(ad)">
+    <img *ngIf="ad.urlPhotos?.length" [src]="ad.urlPhotos[0]" />
+    <div class="ad-body">
+      <h5>{{ ad.title }}</h5>
+      <p class="ad-location">{{ ad.city }}, {{ ad.country }}</p>
+      <p>{{ ad.description | slice : 0 : 100 }}...</p>
+      <div class="ad-details">
+        <small>Sobe: {{ ad.numberOfRooms }} • Površina: {{ ad.homeArea }}</small>
+        <br />
+        <a [routerLink]="['/ad-detail', ad.id]" class="btn btn-primary">Više...</a>
       </div>
     </div>
   </div>
