@@ -39,13 +39,12 @@
 
           <!-- Dodatno: prikaz zauzetih termina -->
           <div *ngIf="bookedPeriods?.length" class="mb-2">
-            <strong>Zauzeti termini:</strong>
-            <ul>
-              <li *ngFor="let b of bookedPeriods">
-                Od {{ b.startDate | date : 'dd.MM.yyyy HH:mm' }} do
-                {{ b.endDate | date : 'dd.MM.yyyy HH:mm' }}
-              </li>
-            </ul>
+            <small>Zauzeti termini:</small>
+
+            <small *ngFor="let b of bookedPeriods">
+              Od {{ b.startDate | date : 'dd.MM.yyyy HH:mm' }} do
+              {{ b.endDate | date : 'dd.MM.yyyy HH:mm' }}
+            </small>
           </div>
 
           <form [formGroup]="reservationForm">
