@@ -7,7 +7,7 @@
         </div>
 
         <div class="card-body">
-          <h3>{{ ad.title }}</h3>
+          <h5>{{ ad.title }}</h5>
           <p class="text-muted">{{ ad.city }}, {{ ad.country }} • {{ ad.address }}</p>
           <p>{{ ad.description }}</p>
           <div>
@@ -36,7 +36,7 @@
         </div>
 
         <div class="card p-3 mb-3">
-          <h3>Napravi rezervaciju</h3>
+          <h5>Napravi rezervaciju</h5>
 
           <!-- Dodatno: prikaz zauzetih termina -->
           <div *ngIf="bookedPeriods?.length" class="mb-2">
@@ -73,7 +73,7 @@
         </div>
 
         <div class="card p-3">
-          <h3>Ostavi ocenu</h3>
+          <h5>Ostavi ocenu</h5>
           <form [formGroup]="ratingForm">
             <div class="mb-2">
               <select class="form-select" formControlName="score">
