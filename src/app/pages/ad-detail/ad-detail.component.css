@@ -5,10 +5,14 @@
   gap: 40px;
 }
 
-.col-md-8 .card,
-.col-md-4 .card {
-  width: 100px;
+.col-md-8 {
+  width: 65%;
 }
+
+.col-md-4 {
+  width: 33%;
+}
+
 .card {
   margin-top: 2rem;
   border-radius: 5px;
