@@ -1,7 +1,9 @@
-/* Generalni padding za container */
-.container.py-4 {
-  max-width: 1200px;
-  margin: 0 auto;
+/* Centeriranje celog row-a */
+.row {
+  display: flex;
+  justify-content: center; /* horizontalno centriranje */
+  align-items: flex-start; /* vertikalno poravnanje po vrhu */
+  gap: 30px; /* space između kolona */
 }
 
 /* Kartice */
@@ -17,12 +19,7 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
-/* Razmak između kartica */
-.card + .card {
-  margin-top: 20px;
-}
-
-/* Slike oglasa */
+/* Slike oglasa - manje i sa razmakom */
 .ad-images {
   display: flex;
   flex-wrap: wrap;
@@ -31,10 +28,17 @@
 }
 
 .ad-images img {
-  flex: 1 1 calc(50% - 10px);
+  flex: 1 1 calc(33% - 10px); /* manja slika */
+  max-height: 120px; /* smanjena visina */
   object-fit: cover;
   border-radius: 10px;
-  max-height: 200px;
+}
+
+/* Razmak između glavnog diva i rezervacija */
+.col-md-4 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* razmak između kartica u koloni */
 }
 
 /* Naslovi i tekst */
@@ -53,12 +57,7 @@ small {
   color: #555;
 }
 
-/* Rezervacija i ocene */
-.card h6 {
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
+/* Forme i dugmad */
 form .form-control,
 form .form-select {
   border-radius: 8px;
@@ -92,8 +91,19 @@ button.btn:hover {
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
+  .row {
+    flex-direction: column;
+    align-items: center;
+  }
+
   .ad-images img {
-    flex: 1 1 100%;
+    flex: 1 1 45%;
+    max-height: 100px;
+  }
+
+  .col-md-4,
+  .col-md-8 {
+    width: 100%;
   }
 }
