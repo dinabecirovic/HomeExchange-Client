@@ -7,8 +7,8 @@
 
 .col-md-8 .card,
 .col-md-4 .card {
-  width: 90%;
-  margin: 0 auto;
+  width: 900px;
+  margin: 10 auto;
 }
 .card {
   margin-top: 2rem;
