@@ -3,6 +3,11 @@
 }
 
 /* Search */
+.search-card {
+  margin: 7px;
+  border-radius: 4px;
+  padding: 10px;
+}
 .search-form {
   display: flex;
   gap: 10px;
@@ -34,7 +39,7 @@
 /* Ads list */
 .ads-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  _grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
 }
 
@@ -44,13 +49,13 @@
   border-radius: 6px;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  _transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.ad-card:hover {
+/*.ad-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
+}*/
 
 .ad-card img {
   width: 100%;
