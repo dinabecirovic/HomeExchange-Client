@@ -36,7 +36,7 @@
         </div>
 
         <div class="card p-3 mb-3">
-          <h6>Napravi rezervaciju</h6>
+          <h3>Napravi rezervaciju</h3>
 
           <!-- Dodatno: prikaz zauzetih termina -->
           <div *ngIf="bookedPeriods?.length" class="mb-2">
@@ -73,7 +73,7 @@
         </div>
 
         <div class="card p-3">
-          <h6>Ostavi ocenu</h6>
+          <h3>Ostavi ocenu</h3>
           <form [formGroup]="ratingForm">
             <div class="mb-2">
               <select class="form-select" formControlName="score">
@@ -87,7 +87,7 @@
           <button class="btn btn-secondary w-100" (click)="createRating()">Oceni</button>
         </div>
         <div class="card p-3 mt-3">
-          <h6>Recenzije</h6>
+          <h3>Recenzije</h3>
 
           <div *ngIf="ratings.length > 0; else noRatings">
             <div *ngFor="let r of ratings" class="border p-2 mb-2 rounded">
