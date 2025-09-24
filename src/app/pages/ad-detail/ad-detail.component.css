@@ -5,6 +5,11 @@
   gap: 40px;
 }
 
+.col-md-8 .card,
+.col-md-4 .card {
+  width: 90%;
+  margin: 0 auto;
+}
 .card {
   margin-top: 2rem;
   border-radius: 5px;
@@ -69,11 +74,6 @@ textarea {
   margin: 2px;
   background-color: #fff;
   border: 1px solid #cecece;
-}
-
-button.btn {
-  border-radius: 5px;
-  padding: 0.5rem;
 }
 
 /* Alert */
