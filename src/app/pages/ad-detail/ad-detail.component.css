@@ -38,6 +38,7 @@
 }
 
 .col-md-4 .card {
+  width: 40%;
   margin-bottom: 1rem;
   padding: 1rem;
 }
