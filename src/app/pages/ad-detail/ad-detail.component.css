@@ -13,14 +13,17 @@
   border: 1px solid #ddd;
 }
 
+/* Slike oglasa - manje */
 .ad-images {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .ad-images img {
-  width: 8rem; /* ograniči visinu da ne budu prevelike */
+  flex: 1 1 calc(33% - 0.5rem);
+  width: 8rem; /* manja slika */
   object-fit: cover;
   border-radius: 5px;
 }
@@ -66,10 +69,6 @@ textarea {
   margin: 2px;
   background-color: #fff;
   border: 1px solid #cecece;
-}
-.btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
 }
 
 /* Alert */
