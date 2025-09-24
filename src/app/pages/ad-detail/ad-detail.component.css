@@ -1,20 +1,17 @@
-/* Centeriranje row-a */
 .row {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 30px; /* space između kolona */
+  gap: 40px;
 }
 
-/* Kartice jednostavno, bez senki */
 .card {
-  border-radius: 8px;
+  border-radius: 2px;
   padding: 15px;
   background-color: #fff;
   border: 1px solid #ddd;
 }
 
-/* Slike oglasa - manje */
 .ad-images {
   display: flex;
   flex-wrap: wrap;
@@ -24,12 +21,10 @@
 
 .ad-images img {
   flex: 1 1 calc(33% - 0.5rem);
-  max-height: 6rem; /* manja slika */
+  width: 8rem;
   object-fit: cover;
   border-radius: 5px;
 }
-
-/* Margin-top za desni div (rezervacije i ocene) */
 .col-md-4 {
   margin-top: 2rem;
   display: flex;
@@ -37,7 +32,6 @@
   gap: 1rem;
 }
 
-/* Naslovi i tekst */
 h3 {
   font-weight: 600;
   margin-bottom: 0.5rem;
@@ -53,10 +47,9 @@ small {
   color: #555;
 }
 
-/* Forme i dugmad */
 form .form-control,
 form .form-select {
-  border-radius: 5px;
+  border-radius: 2px;
   padding: 0.5rem 0.75rem;
 }
 
@@ -65,22 +58,19 @@ button.btn {
   padding: 0.5rem;
 }
 
-/* Alert */
 .alert {
-  border-radius: 5px;
+  border-radius: 2px;
   font-weight: 500;
 }
 
-/* Recenzije */
 .card p {
   margin-bottom: 0.3rem;
 }
 
 .border {
-  border: 1px solid #e0e0e0 !important;
+  border: 1px solid #c6c6c6 !important;
 }
 
-/* Responsive */
 @media (max-width: 992px) {
   .row {
     flex-direction: column;
