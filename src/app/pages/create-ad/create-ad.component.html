@@ -4,7 +4,7 @@
     <form (ngSubmit)="submit()" [formGroup]="form">
       <div class="form-group">
         <input formControlName="title" placeholder="Naslov" />
-        <div class="error" *ngIf="form.controls['title'].errors?.capitalLetter">
+        <div class="error" *ngIf="form.controls['title'].errors?.['capitalLetter']">
           Naslov mora početi velikim slovom
         </div>
       </div>
@@ -31,12 +31,12 @@
 
       <div class="form-row">
         <input formControlName="city" placeholder="Grad" />
-        <div class="error" *ngIf="form.controls['city'].errors?.capitalLetter">
+        <div class="error" *ngIf="form.controls['city'].errors?.['capitalLetter']">
           Ime grada mora početi velikim slovom
         </div>
         <div class="form-subgroup">
           <input formControlName="country" placeholder="Država" />
-          <div class="error" *ngIf="form.controls['country'].errors?.capitalLetter">
+          <div class="error" *ngIf="form.controls['country'].errors?.['capitalLetter']">
             Ime države mora početi velikim slovom
           </div>
         </div>
