@@ -23,6 +23,10 @@ export class AdDetailComponent implements OnInit, OnDestroy {
 
   private pollingSub: Subscription | null = null;
 
+  // Dodatno
+  bookedPeriods: { startDate: string; endDate: string }[] = [];
+  minDate = new Date(); // zabrana prošlih datuma
+
   constructor(
     private route: ActivatedRoute,
     private adService: AdvertisementService,
@@ -42,32 +46,27 @@ export class AdDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // Učitavanje trenutnog korisnika iz localStorage
     this.currentUser = JSON.parse(localStorage.getItem('user') || 'null');
-
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if (!id) return;
 
-    // Učitavanje oglasa
     this.adService.getById(id).subscribe({
-      next: (a: any) => (this.ad = a),
-      error: () => alert('Failed to load advertisement.'),
-    });
+      next: (a: any) => {
+        this.ad = a;
 
-    /* Polling za proveru statusa razmene svaka 10s
-    this.pollingSub = interval(10000).subscribe(() => {
-      if (this.ad && this.currentUser) {
-        this.reservationService.getReservationsForOwner(this.ad.id).subscribe((res: any[]) => {
-          const myReservation = res.find(r => r.userId === this.currentUser.id);
-          if (myReservation && myReservation.isExchangeConfirmed) {
-            this.reservationStatus = {
-              isConfirmed: true,
-              message: 'Razmena je sada potvrđena!',
-            };
-          }
+        // Dodatno: učitavanje zauzetih termina
+        this.reservationService.getReservationsForOwner(a.id).subscribe({
+          next: (res: any) => {
+            this.bookedPeriods = res.map((r: any) => ({
+              startDate: r.startDate,
+              endDate: r.endDate,
+            }));
+          },
+          error: () => console.error('Ne mogu da učitam zauzete termine.'),
         });
-      }
-    });*/
+      },
+      error: () => alert('neuspesno ucitan oglas.'),
+    });
   }
 
   ngOnDestroy() {
@@ -78,8 +77,35 @@ export class AdDetailComponent implements OnInit, OnDestroy {
     if (!this.reservationForm.valid) return;
 
     if (!this.ad || !this.ad.id) {
-      alert('Advertisement not loaded yet.');
+      alert('Oglas jos uvek nije ucitan.');
       return;
+    }
+
+    const start = new Date(this.reservationForm.value.startDate);
+    const end = new Date(this.reservationForm.value.endDate);
+    const today = new Date();
+
+    // Ne može datum u prošlosti
+    if (start < today || end < today) {
+      alert('Ne možete rezervisati termine u prošlosti.');
+      return;
+    }
+
+    // Kraj mora biti posle početka
+    if (end <= start) {
+      alert('Datum završetka mora biti posle datuma početka.');
+      return;
+    }
+
+    // Provera zauzetih termina
+    for (let b of this.bookedPeriods) {
+      const bStart = new Date(b.startDate);
+      const bEnd = new Date(b.endDate);
+
+      if (start <= bEnd && end >= bStart) {
+        alert(`Oglas je već zauzet od ${bStart.toLocaleString()} do ${bEnd.toLocaleString()}`);
+        return;
+      }
     }
 
     const body = {
@@ -114,7 +140,7 @@ export class AdDetailComponent implements OnInit, OnDestroy {
     if (!this.ratingForm.valid) return;
 
     if (!this.ad || !this.ad.id) {
-      alert('Advertisement not loaded yet.');
+      alert('Oglas jos uvek nije ucitan.');
       return;
     }
 

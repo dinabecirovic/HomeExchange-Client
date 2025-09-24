@@ -1,9 +1,7 @@
 <div class="container py-4" *ngIf="ad">
   <div class="row">
-    <!-- Left column -->
     <div class="col-md-8">
       <div class="card mb-3">
-        <!--img *ngIf="ad.urlPhotos?.length" [src]="ad.urlPhotos[0]" class="card-img-top ad-image" /-->
         <div class="ad-images" *ngIf="ad.urlPhotos?.length">
           <img *ngFor="let photo of ad.urlPhotos" [src]="photo" class="img-fluid mb-2" />
         </div>
@@ -15,8 +13,8 @@
           <div>
             <small>Sobe: {{ ad.numberOfRooms }} • Površina: {{ ad.homeArea }}</small>
             <br />
-            <small
-              >Dvorište: {{ ad.garden }} • Parking mesto: {{ ad.parkingSpace }} • Bazen:
+            <small>
+              Dvorište: {{ ad.garden }} • Parking mesto: {{ ad.parkingSpace }} • Bazen:
               {{ ad.swimmingPool }}
             </small>
             <br />
@@ -26,10 +24,8 @@
       </div>
     </div>
 
-    <!-- Right column -->
     <div *ngIf="currentUser?.id !== ad.homeOwnerId">
       <div class="col-md-4">
-        <!-- Reservation status -->
         <div
           *ngIf="reservationStatus"
           class="alert mt-2"
@@ -38,21 +34,41 @@
           {{ reservationStatus.message }}
         </div>
 
-        <!-- Reservation form -->
         <div class="card p-3 mb-3">
           <h6>Napravi rezervaciju</h6>
+
+          <!-- Dodatno: prikaz zauzetih termina -->
+          <div *ngIf="bookedPeriods?.length" class="mb-2">
+            <strong>Zauzeti termini:</strong>
+            <ul>
+              <li *ngFor="let b of bookedPeriods">
+                Od {{ b.startDate | date : 'dd.MM.yyyy HH:mm' }} do
+                {{ b.endDate | date : 'dd.MM.yyyy HH:mm' }}
+              </li>
+            </ul>
+          </div>
+
           <form [formGroup]="reservationForm">
             <div class="mb-2">
-              <input type="datetime-local" class="form-control" formControlName="startDate" />
+              <input
+                type="datetime-local"
+                class="form-control"
+                formControlName="startDate"
+                [min]="minDate | date : 'yyyy-MM-ddTHH:mm'"
+              />
             </div>
             <div class="mb-2">
-              <input type="datetime-local" class="form-control" formControlName="endDate" />
+              <input
+                type="datetime-local"
+                class="form-control"
+                formControlName="endDate"
+                [min]="minDate | date : 'yyyy-MM-ddTHH:mm'"
+              />
             </div>
           </form>
           <button class="btn btn-primary w-100" (click)="createReservation()">Rezerviši</button>
         </div>
 
-        <!-- Rating form -->
         <div class="card p-3">
           <h6>Ostavi ocenu</h6>
           <form [formGroup]="ratingForm">

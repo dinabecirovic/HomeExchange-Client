@@ -11,15 +11,12 @@
         </p>
       </div>
       <div class="ad-actions">
-        <!-- dugme odobri samo ako je Pending -->
         <button *ngIf="a.status === 'Pending'" class="approve-btn" (click)="approve(a.id)">
           Odobri
         </button>
         <button class="delete-btn" (click)="remove(a.id)">Izbriši</button>
       </div>
     </div>
-
-    <!-- dostupnost samo za Approved -->
     <div *ngIf="a.status === 'Approved'" class="ad-availability">
       <label>Dostupnost</label>
       <select [(ngModel)]="a.availability" (ngModelChange)="updateAvailability(a.id, $event)">
