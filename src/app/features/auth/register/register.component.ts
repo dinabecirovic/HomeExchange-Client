@@ -1,9 +1,17 @@
 import { Component } from '@angular/core';
-import { Validators } from '@angular/forms';
+import { Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { RegisterRequest } from '../../../core/models/auth.model';
+
+function capitalLetterValidator(control: AbstractControl): ValidationErrors | null {
+  const value = control.value;
+  if (value && value.length > 0 && value[0] !== value[0].toUpperCase()) {
+    return { capitalLetter: true };
+  }
+  return null;
+}
 
 @Component({
   selector: 'app-register',
@@ -20,8 +28,8 @@ export class RegisterComponent {
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {
     this.form = this.fb.group({
       roles: ['HomeOwner'],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      firstName: ['', [Validators.required, capitalLetterValidator]],
+      lastName: ['', [Validators.required, capitalLetterValidator]],
       email: ['', [Validators.required, Validators.email]],
       password: [
         '',

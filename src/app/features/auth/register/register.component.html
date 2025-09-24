@@ -4,22 +4,16 @@
     <div class="form-group">
       <label>Ime</label>
       <input type="text" class="form-control" formControlName="firstName" />
-      <div
-        class="error"
-        *ngIf="form.controls['firstName'].touched && form.controls['firstName'].invalid"
-      >
-        Ime je obavezno
+      <div class="error" *ngIf="form.controls['firstName'].errors?.['capitalLetter']">
+        Ime mora početi velikim slovom
       </div>
     </div>
 
     <div class="form-group">
       <label>Prezime</label>
       <input type="text" class="form-control" formControlName="lastName" />
-      <div
-        class="error"
-        *ngIf="form.controls['lastName'].touched && form.controls['lastName'].invalid"
-      >
-        Prezime je obavezno
+      <div class="error" *ngIf="form.controls['lastName'].errors?.['capitalLetter']">
+        Prezime mora početi velikim slovom
       </div>
     </div>
 
