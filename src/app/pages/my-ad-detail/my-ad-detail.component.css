@@ -51,59 +51,8 @@ small {
   margin-top: 0.3rem;
   color: #555;
 }
-
-/* Forme i dugmad */
-form .form-control,
-form .form-select {
-  border-radius: 5px;
-  padding: 0.5rem 0.75rem;
-}
-
-input {
-  margin: 2px;
-  background-color: #fff;
-  border: 1px solid #cecece;
-}
-
-textarea {
-  margin: 2px;
-  background-color: #fff;
-  border: 1px solid #cecece;
-}
-
-.form-actions {
-  display: flex;
-  justify-content: flex-start; /* dugmad sa leve strane */
-  gap: 10px; /* razmak između dugmadi */
-  margin-top: 15px;
-}
-
-.btn-save {
-  background-color: #28a745; /* zeleno za "Sačuvaj" */
-  color: white;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.btn-save:hover {
-  background-color: #218838;
-}
-
-.btn-cancel {
-  background-color: #6c757d; /* sivo za "Otkaži" */
-  color: white;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.btn-cancel:hover {
-  background-color: #5a6268;
+.mt-3 {
+  gap: 10px;
 }
 
 /* Alert */
