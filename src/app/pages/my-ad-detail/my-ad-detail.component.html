@@ -30,7 +30,6 @@
           </div>
           <div *ngIf="isEditing" class="card p-3 mb-3">
             <h5>Izmena oglasa</h5>
-            <label>Opis:</label>
             <textarea [(ngModel)]="editForm.description" class="form-control mb-2"></textarea>
 
             <label> <input type="checkbox" [(ngModel)]="editForm.garden" /> Dvorište </label>
