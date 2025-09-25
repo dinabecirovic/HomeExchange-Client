@@ -13,11 +13,11 @@
           <div>
             <small>Sobe: {{ ad.numberOfRooms }} • Površina: {{ ad.homeArea }}</small>
             <br />
-            <small> Dvorište: {{ ad.garden }} </small>
+            <small> Dvorište: {{ ad.garden ? 'Da' : 'Ne' }} </small>
             <br />
-            <small> Parking mesto: {{ ad.parkingSpace }} </small>
+            <small> Parking mesto: {{ ad.parkingSpace ? 'Da' : 'Ne' }} </small>
             <br />
-            <small> Bazen: {{ ad.swimmingPool }}</small>
+            <small> Bazen: {{ ad.swimmingPool ? 'Da' : 'Ne' }}</small>
             <br />
             <small> Datum objavljivanja: {{ ad.date }}</small>
           </div>
@@ -93,7 +93,7 @@
             <div *ngFor="let r of ratings" class="border p-2 mb-2 rounded">
               <p>{{ r.score }} / 5</p>
               <p>{{ r.comment }}</p>
-              <small>Korisnik: {{ r.userId }}</small>
+              <small>Korisnik: {{ r.userFirstName }} {{ r.userLastName }}</small>
             </div>
           </div>
 

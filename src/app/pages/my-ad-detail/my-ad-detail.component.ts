@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdvertisementResponse } from '../../core/models/advertisement.model';
-import { ReservationRequest } from '../../core/models/reservation.model';
-import { RatingRequest } from '../../core/models/rating.model';
+import { ReservationResponse } from '../../core/models/reservation.model';
+import { RatingResponse } from '../../core/models/rating.model';
 import { AdvertisementService } from '../../core/services/advertisement.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReservationService } from '../../core/services/reservation.service';
@@ -15,8 +15,8 @@ import { RatingService } from '../../core/services/rating.service';
 })
 export class MyAdDetailComponent implements OnInit {
   ad!: AdvertisementResponse;
-  reservations: ReservationRequest[] = [];
-  ratings: RatingRequest[] = [];
+  reservations: ReservationResponse[] = [];
+  ratings: RatingResponse[] = [];
 
   constructor(
     private adService: AdvertisementService,
