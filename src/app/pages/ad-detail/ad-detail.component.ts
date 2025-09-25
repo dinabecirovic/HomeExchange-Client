@@ -158,12 +158,13 @@ export class AdDetailComponent implements OnInit, OnDestroy {
         alert('Ocena uspešno poslata!');
         this.ratingForm.reset({ score: 5, comment: '' });
 
-        // NOVO: osveži listu recenzija nakon slanja
+        // osveži listu recenzija
         this.loadRatings();
       },
       error: (err) => {
         console.error(err);
-        alert('Slanje ocene nije uspelo.');
+        // Jednostavna poruka
+        alert('Ne možete ostaviti recenziju dok ne istekne rezervacija.');
       },
     });
   }

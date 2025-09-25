@@ -91,9 +91,9 @@
 
           <div *ngIf="ratings.length > 0; else noRatings">
             <div *ngFor="let r of ratings" class="border p-2 mb-2 rounded">
+              <small>{{ r.userFirstName }} {{ r.userLastName }}</small>
               <p>{{ r.score }} / 5</p>
               <p>{{ r.comment }}</p>
-              <small>Korisnik: {{ r.userFirstName }} {{ r.userLastName }}</small>
             </div>
           </div>
 
