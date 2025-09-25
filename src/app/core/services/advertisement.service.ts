@@ -46,12 +46,18 @@ export class AdvertisementService {
     });
   }
 
-  update(id: number, body: any) {
-    return this.http.put(`${this.api}/HomeOwner/UpdateAdvertisement/${id}`, body);
+  delete(id: number) {
+    const token = localStorage.getItem('auth_token');
+    return this.http.delete(`${this.api}/HomeOwner/DeleteAdvertisement/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
   }
 
-  delete(id: number) {
-    return this.http.delete(`${this.api}/HomeOwner/DeleteAdvertisement/${id}`);
+  update(id: number, body: any) {
+    const token = localStorage.getItem('auth_token');
+    return this.http.put(`${this.api}/HomeOwner/UpdateAdvertisement/${id}`, body, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
   }
 
   search(criteria: any) {

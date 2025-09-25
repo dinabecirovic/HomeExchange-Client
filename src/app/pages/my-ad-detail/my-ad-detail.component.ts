@@ -43,7 +43,29 @@ export class MyAdDetailComponent implements OnInit {
     }
   }
 
-  editAd(ad: AdvertisementResponse): void {
-    this.router.navigate(['/my-ads/edit', ad.id]);
+  isEditing: boolean = false;
+  editForm = {
+    description: '',
+    garden: false,
+    parkingSpace: false,
+    swimmingPool: false,
+  };
+
+  editAd(ad: AdvertisementResponse) {
+    this.isEditing = true;
+    // popuni formu sa trenutnim podacima oglasa
+    this.editForm.description = ad.description;
+    this.editForm.garden = ad.garden;
+    this.editForm.parkingSpace = ad.parkingSpace;
+    this.editForm.swimmingPool = ad.swimmingPool;
+  }
+
+  saveEdit(ad: AdvertisementResponse) {
+    this.adService.update(ad.id, this.editForm).subscribe(() => {
+      alert('Oglas uspešno izmenjen!');
+      // osveži podatke oglasa
+      this.loadAd(ad.id);
+      this.isEditing = false;
+    });
   }
 }

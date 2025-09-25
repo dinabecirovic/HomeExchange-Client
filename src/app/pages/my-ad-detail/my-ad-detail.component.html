@@ -28,6 +28,20 @@
             <button class="btn btn-warning me-2" (click)="editAd(ad)">Izmeni</button>
             <button class="btn btn-danger" (click)="deleteAd(ad.id)">Obriši</button>
           </div>
+          <div *ngIf="isEditing" class="card p-3 mb-3">
+            <h5>Izmena oglasa</h5>
+            <label>Opis:</label>
+            <textarea [(ngModel)]="editForm.description" class="form-control mb-2"></textarea>
+
+            <label> <input type="checkbox" [(ngModel)]="editForm.garden" /> Dvorište </label>
+            <br />
+            <label> <input type="checkbox" [(ngModel)]="editForm.parkingSpace" /> Parking </label>
+            <br />
+            <label> <input type="checkbox" [(ngModel)]="editForm.swimmingPool" /> Bazen </label>
+            <br />
+            <button class="btn btn-success mt-2" (click)="saveEdit(ad)">Sačuvaj</button>
+            <button class="btn btn-secondary mt-2" (click)="isEditing = false">Otkaži</button>
+          </div>
         </div>
       </div>
     </div>
@@ -60,6 +74,7 @@
         <h5>Recenzije</h5>
         <div *ngIf="ratings.length > 0; else noRatings">
           <div *ngFor="let r of ratings" class="border p-2 mb-2 rounded">
+            <small> {{ r.userFirstName }} {{ r.userLastName }} </small>
             <p>
               <strong>{{ r.score }} / 5</strong>
             </p>
