@@ -51,9 +51,6 @@ small {
   margin-top: 0.3rem;
   color: #555;
 }
-.ad-buttons button {
-  size: 1px;
-}
 
 /* Alert */
 .alert {

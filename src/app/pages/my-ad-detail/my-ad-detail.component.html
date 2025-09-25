@@ -25,7 +25,7 @@
           </div>
 
           <div class="mt-3 add-buttons">
-            <button (click)="editAd(ad)">Izmeni</button>
+            <button style="margin-right: 10px" (click)="editAd(ad)">Izmeni</button>
             <button (click)="deleteAd(ad.id)">Obriši</button>
           </div>
           <div *ngIf="isEditing" class="card p-3 mb-3">
@@ -39,7 +39,7 @@
             <label> <input type="checkbox" [(ngModel)]="editForm.swimmingPool" /> Bazen </label>
             <br />
             <div class="add-buttons">
-              <button (click)="saveEdit(ad)">Sačuvaj</button>
+              <button style="margin-right: 10px" (click)="saveEdit(ad)">Sačuvaj</button>
               <button (click)="isEditing = false">Otkaži</button>
             </div>
           </div>
