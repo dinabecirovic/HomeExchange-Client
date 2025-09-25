@@ -16,6 +16,7 @@ import { PendingAdsComponent } from './pages/admin/pending-ads/pending-ads.compo
 import { PendingUsersComponent } from './pages/admin/pending-users/pending-users.component';
 import { AllAdsComponent } from './pages/admin/all-ads/all-ads.component';
 import { MyAdComponent } from './pages/my-ad/my-ad.component';
+import { MyAdDetailComponent } from './pages/my-ad-detail/my-ad-detail.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { MyAdComponent } from './pages/my-ad/my-ad.component';
     PendingUsersComponent,
     AllAdsComponent,
     MyAdComponent,
+    MyAdDetailComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule],
   providers: [provideBrowserGlobalErrorListeners()],

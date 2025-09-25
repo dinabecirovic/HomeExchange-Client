@@ -13,6 +13,7 @@ import { PendingAdsComponent } from './pages/admin/pending-ads/pending-ads.compo
 import { PendingUsersComponent } from './pages/admin/pending-users/pending-users.component';
 import { AllAdsComponent } from './pages/admin/all-ads/all-ads.component';
 import { MyAdComponent } from './pages/my-ad/my-ad.component';
+import { MyAdDetailComponent } from './pages/my-ad-detail/my-ad-detail.component';
 
 const routes: Routes = [
   { path: '', component: AdsListComponent },
@@ -25,18 +26,23 @@ const routes: Routes = [
     data: { roles: ['HomeOwner'] },
   },
   {
+    path: 'ad-detail/:id',
+    component: AdDetailComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: { roles: ['HomeOwner'] },
+  },
+  {
     path: 'my-ad',
     component: MyAdComponent,
     canActivate: [AuthGuard, RoleGuard],
     data: { roles: ['HomeOwner'] },
   },
   {
-    path: 'ad-detail/:id',
-    component: AdDetailComponent,
+    path: 'my-ad-detail/:id',
+    component: MyAdDetailComponent,
     canActivate: [AuthGuard, RoleGuard],
     data: { roles: ['HomeOwner'] },
   },
-
   {
     path: 'admin',
     component: AdminDashboardComponent,
