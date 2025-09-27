@@ -106,7 +106,9 @@ export class AdDetailComponent implements OnInit, OnDestroy {
       const bEnd = new Date(b.endDate);
 
       if (start <= bEnd && end >= bStart) {
-        alert(`Oglas je već zauzet od ${bStart.toLocaleString()} do ${bEnd.toLocaleString()}`);
+        alert(
+          `Oglas je već zauzet od ${bStart.toLocaleDateString()} do ${bEnd.toLocaleDateString()}`
+        );
         return;
       }
     }
